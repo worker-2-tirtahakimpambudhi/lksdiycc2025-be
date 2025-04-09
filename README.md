@@ -1,4 +1,4 @@
-## LKS Cloud Computing DIY 2024
+## LKS Cloud Computing DIY 2025
 
 Repository ini merupakan aplikasi backend dengan bahasa golang yang digunakan untuk seleksi LKS DIY 2025 bidang Cloud Computing.
 ```
