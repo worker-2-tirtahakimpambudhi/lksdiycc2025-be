@@ -1,6 +1,14 @@
-# README.md
-
 ## LKS Cloud Computing DIY 2024
+
+Repository ini merupakan aplikasi backend dengan bahasa golang yang digunakan untuk seleksi LKS DIY 2025 bidang Cloud Computing.
+```
+        ∩∩   ♡      i will always be  
+     (・⩊・ )         moo-ing for you  
+   ∩ ∩(   っ⌒っ       with love & hugs  
+ ⊂⌒(　　・ω・)ノ        for lkscc fighter!
+　 ＼_つ＿/￣￣￣/  
+　　　 ＼/＿＿＿/
+```
 
 ### Prerequisites
 - Docker
@@ -10,11 +18,11 @@
 ### Init repo
 Just run those simple command!
 ```sh
-   go mod init
+go mod init
    ```
 then
 ```sh
-   go mod tidy
+go mod tidy
    ```
 
 ### Environment Variables
