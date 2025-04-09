@@ -266,5 +266,5 @@ func main() {
 	r.DELETE("/students/:id", deleteStudent)
 	r.GET("/students/cache/:id", getStudentCache)
 
-	r.Run(":8084")
+	r.Run(":8080")
 }
