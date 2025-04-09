@@ -7,6 +7,16 @@
 - Docker Compose
 - AWS S3 Credentials
 
+### Init repo
+Just run those simple command!
+```sh
+   go mod init
+   ```
+then
+```sh
+   go mod tidy
+   ```
+
 ### Environment Variables
 Create a `.env` file and configure the following environment variables:
 ```env
