@@ -1,0 +1,102 @@
+{
+    "family": "$TASK_NAME",
+    "containerDefinitions": [
+        {
+            "name": "$CONTAINER_NAME",
+            "image": "$IMAGE_NAME",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "$CONTAINER_NAME-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "AWS_SESSION_TOKEN",
+                    "value": "$AWS_SESSION_TOKEN"
+                },
+                {
+                    "name": "AWS_REGION",
+                    "value": "$AWS_REGION"
+                },
+                {
+                    "name": "DB_PASS",
+                    "value": "$DB_PASS"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "$DB_PORT"
+                },
+                {
+                    "name": "AWS_BUCKET_NAME",
+                    "value": "$AWS_BUCKET_NAME"
+                },
+                {
+                    "name": "DB_USER",
+                    "value": "$DB_USER"
+                },
+                {
+                    "name": "DB_NAME",
+                    "value": "$DB_NAME"
+                },
+                {
+                    "name": "AWS_SECRET_KEY",
+                    "value": "$AWS_SECRET_KEY"
+                },
+                {
+                    "name": "AWS_ACCESS_KEY",
+                    "value": "$AWS_ACCESS_KEY"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "$DB_HOST"
+                },
+                {
+                    "name": "REDIS_TLS_INSECURE",
+                    "value": "true"
+                },
+                {
+                    "name": "REDIS_ADDR",
+                    "value": "$REDIS_ADDR"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/$TASK_NAME",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "$AWS_REGION",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "taskRoleArn": "$ROLE_ARN",
+    "executionRoleArn": "$ROLE_ARN",
+    "networkMode": "awsvpc",
+    "volumes": [],
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "enableFaultInjection": false
+} 
