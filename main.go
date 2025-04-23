@@ -18,7 +18,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -72,7 +72,9 @@ func initRedis() {
 		Addr:      redisAddr,
 		Password:  "",
 		DB:        0,
-		TLSConfig: &tls.Config{},
+		TLSConfig: &tls.Config{
+			InsecureSkipVerify: os.Getenv("REDIS_TLS_INSECURE") == "true",
+		},
 	})
 
 	_, err := rdb.Ping(ctx).Result()
@@ -91,7 +93,7 @@ func initS3() {
 		Credentials: credentials.NewStaticCredentials(
 			os.Getenv("AWS_ACCESS_KEY"),
 			os.Getenv("AWS_SECRET_KEY"),
-			"",
+			os.Getenv("AWS_SESSION_TOKEN"),
 		),
 	})
 	if err != nil {
@@ -239,7 +241,7 @@ func getStudentCache(c *gin.Context) {
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Print("Error loading .env file not found, using environment variable")
 	}
 
 	initDB()
@@ -266,5 +268,5 @@ func main() {
 	r.DELETE("/students/:id", deleteStudent)
 	r.GET("/students/cache/:id", getStudentCache)
 
-	r.Run(":8080")
+	r.Run(":80")
 }
