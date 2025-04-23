@@ -43,7 +43,7 @@ COPY --from=builder /app/main .
 RUN chmod +x main
 
 # Expose application port
-EXPOSE 80
+EXPOSE 8080
 
 # Run the application
 CMD ["./main"]
