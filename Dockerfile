@@ -1,5 +1,5 @@
-# Use the official Golang 1.22 image as a base
-FROM golang:1.22 as builder
+# Use the official Golang 1.24.2 image as a base
+FROM golang:1.24.2 as builder
 
 WORKDIR /app
 
@@ -20,6 +20,19 @@ FROM alpine:latest
 
 WORKDIR /root/
 
+ENV DB_HOST="" \ 
+    DB_PORT="" \
+    DB_USER="" \ 
+    DB_PASS="" \
+    DB_NAME="" \
+    REDIS_ADDR="" \ 
+    REDIS_TLS_INSECURE="" \
+    AWS_REGION="" \ 
+    AWS_ACCESS_KEY="" \
+    AWS_SECRET_KEY="" \ 
+    AWS_SESSION_TOKEN="" \
+    AWS_BUCKET_NAME=""
+
 # Install dependencies (optional but useful)
 RUN apk add --no-cache ca-certificates
 
@@ -30,7 +43,7 @@ COPY --from=builder /app/main .
 RUN chmod +x main
 
 # Expose application port
-EXPOSE 8080
+EXPOSE 80
 
 # Run the application
 CMD ["./main"]
